@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const Milight = require("node-milight-promise");
+const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
-const { Config } = require("./config");
+const { Config } = require("../config");
 
-const milight = new Milight.MilightController({
+const milight = new MilightController({
   ip: Config.ip,
   type: "v6",
 });
@@ -27,8 +27,9 @@ console.log(`Starting sunrise alarm at ${new Date().toLocaleString()}`);
     await waitMinute();
   }
 })()
-  .then(() => {
+  .then(async () => {
     console.log(`Finished sunrise alarm at ${new Date().toLocaleString()}`);
+    await milight.close();
     process.exit(0);
   })
   .catch((e) => {

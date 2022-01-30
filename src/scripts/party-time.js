@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const Milight = require("node-milight-promise");
+const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-mimilight-promise");
-const { Config } = require("./config");
+const { Config } = require("../config");
 
-const milight = new Milight.MilightController({
+const milight = new MilightController({
   ip: Config.ip,
   type: "v6",
 });

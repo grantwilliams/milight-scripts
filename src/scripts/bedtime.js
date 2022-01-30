@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const Milight = require("node-milight-promise");
+const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
 const { Config } = require("../config");
 
-const milight = new Milight.MilightController({
+const milight = new MilightController({
   ip: Config.ip,
   type: "v6",
 });
@@ -33,8 +33,9 @@ const action = process.argv[2];
       break;
   }
 })()
-  .then(() => {
+  .then(async () => {
     console.log(`Bedtime light turned ${action}`);
+    await milight.close();
     process.exit(0);
   })
   .catch((e) => {
