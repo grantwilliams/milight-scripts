@@ -2,7 +2,7 @@
 const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
 const { Config } = require("../config");
-require("../logger");
+const { logger } = require("../logger");
 
 const milight = new MilightController({
   ip: Config.ip,
@@ -32,11 +32,11 @@ const action = process.argv[2];
   }
 })()
   .then(async () => {
-    console.log(`Blue light filter turned ${action}`);
+    logger(`Blue light filter turned ${action}`);
     await milight.close();
     process.exit(0);
   })
   .catch((e) => {
-    console.log(e);
+    logger(e);
     process.exit(1);
   });

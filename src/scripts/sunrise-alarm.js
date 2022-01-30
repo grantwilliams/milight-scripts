@@ -2,7 +2,7 @@
 const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
 const { Config } = require("../config");
-require("../logger");
+const { logger } = require("../logger");
 
 const milight = new MilightController({
   ip: Config.ip,
@@ -12,7 +12,7 @@ const milight = new MilightController({
 const zone = 1;
 const waitMinute = () => new Promise((res) => setTimeout(res, 1000 * 60));
 
-console.log(`Starting sunrise alarm at ${new Date().toLocaleString()}`);
+logger(`Starting sunrise alarm`);
 
 (async () => {
   await milight.ready();
@@ -29,11 +29,11 @@ console.log(`Starting sunrise alarm at ${new Date().toLocaleString()}`);
   }
 })()
   .then(async () => {
-    console.log(`Finished sunrise alarm at ${new Date().toLocaleString()}`);
+    logger(`Finished sunrise alarm`);
     await milight.close();
     process.exit(0);
   })
   .catch((e) => {
-    console.log(e);
+    logger(e);
     process.exit(1);
   });

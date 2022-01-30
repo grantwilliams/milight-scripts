@@ -2,7 +2,7 @@
 const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
 const { Config } = require("../config");
-require("../logger");
+const { logger } = require("../logger");
 
 const milight = new MilightController({
   ip: Config.ip,
@@ -36,13 +36,13 @@ const percentage = process.argv[4];
   }
 })()
   .then(async () => {
-    console.log(
+    logger(
       `Turned zone ${zone} ${action}${percentage ? ` to ${percentage}` : ""}`
     );
     await milight.close();
     process.exit(0);
   })
   .catch((e) => {
-    console.log(e);
+    logger(e);
     process.exit(1);
   });
