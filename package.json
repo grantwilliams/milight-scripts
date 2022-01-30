@@ -1,0 +1,21 @@
+{
+  "name": "milight-scipts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "bedtime-lights": "./src/scripts/bedtime.js",
+    "blue-light": "./src/scripts/blue-light.js",
+    "lights": "./src/scripts/lights.js",
+    "party-time": "./src/scripts/party-time.js",
+    "sunrise-alarm": "./src/scripts/sunrise-alarm.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-milight-promise": "^0.3.2"
+  }
+}
