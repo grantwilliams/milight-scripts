@@ -2,6 +2,7 @@
 const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-milight-promise");
 const { Config } = require("../config");
+require("../logger");
 
 const milight = new MilightController({
   ip: Config.ip,
@@ -9,7 +10,7 @@ const milight = new MilightController({
 });
 
 const zone = 1;
-const waitMinute = () => new Promise((res) => setTimeout(res, 1000));
+const waitMinute = () => new Promise((res) => setTimeout(res, 1000 * 60));
 
 console.log(`Starting sunrise alarm at ${new Date().toLocaleString()}`);
 

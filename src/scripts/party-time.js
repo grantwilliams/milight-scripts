@@ -2,6 +2,7 @@
 const { MilightController } = require("node-milight-promise");
 const { commandsV6: commands } = require("node-mimilight-promise");
 const { Config } = require("../config");
+require("../logger");
 
 const milight = new MilightController({
   ip: Config.ip,
